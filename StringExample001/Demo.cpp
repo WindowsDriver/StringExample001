@@ -26,11 +26,12 @@ void GetFiles(std::string folder_path, std::vector<std::string>& files)
 				{
 					// 因为是获取文件名字, 需要把当前目录和父目录排除，要不然放进去的就是文件夹的名字了
 					if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+					{
 						GetFiles(p.assign(folder_path).append("\\").append(fileinfo.name), files);
+					}
 				}
 				else
 				{
-
 					files.push_back(p.assign(folder_path).append("\\").append(fileinfo.name));
 				}
 			} while (_findnext(hFile, &fileinfo) == 0);
@@ -40,6 +41,7 @@ void GetFiles(std::string folder_path, std::vector<std::string>& files)
 	}
 	catch (std::exception e)
 	{
+		//此处添加catch 异常处理
 	}
 }
 
